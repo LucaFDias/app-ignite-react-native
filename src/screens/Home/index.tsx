@@ -5,14 +5,19 @@ import { useState } from "react";
 
 export function Home() {
 
-  const [participants, setParticipants] = useState(['João'])
+  const [participants, setParticipants] = useState<string[]>([])
+  const [ participantName, setParticipantName ] = useState('')
   
   function handleParticipantAdd(){
-    if(participants.includes("Rodrigo")){
-      return Alert.alert("Participante Existe", "Participante já cadastrado na sua lista!")
+    if (participants.includes(participantName)) {
+      return Alert.alert(
+        "Participante Existe",
+        "Participante já cadastrado na sua lista!"
+      )
     }
 
-    setParticipants(prevState => [...prevState, 'Ana']);
+    setParticipants((prevState) => [...prevState, participantName]) // adicionar um participante após o outro
+    setParticipantName(''); // limpa o estado quando for enviado
   }
 
   function handleParticipantRemove(name: string) {
@@ -38,6 +43,8 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6b6b6b"
+          onChangeText={setParticipantName}
+          value={participantName} // isso limpa o input
         />
         <TouchableOpacity style={styles.btn} onPress={handleParticipantAdd}>
           <Text style={styles.bntText}>+</Text>
