@@ -1,8 +1,11 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
 import { styles } from "./styles";
 import { Participant } from "../../components/Participant";
 
 export function Home() {
+
+  const participants = ['Santoro', 'Vini', 'Lucas', 'Diego', 'Biro', 'Ana', 'Lisa', 'João', 'Caio', 'Fernando'];
+
   function handleParticipantAdd(){
     console.log("Você clicou no btn");
   }
@@ -25,8 +28,22 @@ export function Home() {
           <Text style={styles.bntText}>+</Text>
         </TouchableOpacity>
       </View>
-
-      <Participant name="Rodrigo" onRemove={() => handleParticipantRemove("Rodrigo")}/>
+      <FlatList
+        data={[]}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={item => item}
+        renderItem={({ item }) => (
+            <Participant 
+            key={item}
+            name={item} 
+            onRemove={() => handleParticipantRemove("Rodrigo")}/>
+          )}
+        ListEmptyComponent={() => (
+          <Text style={styles.listEmptyText}>
+            Ninguém chegou no evento ainda? Adicione participantes aqui!
+          </Text>
+        )}
+      />
     </View>
   )
 }

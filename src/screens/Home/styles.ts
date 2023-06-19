@@ -45,5 +45,10 @@ export const styles = StyleSheet.create({
   bntText: {
     color: '#fcfdfe',
     fontSize: 24
+  },
+  listEmptyText: {
+    color: '#fff',
+    fontSize: 14,
+    textAlign: "center"
   }
 })
