@@ -15,7 +15,7 @@ export function Home() {
         "Participante já cadastrado na sua lista!"
       )
     }
-    setParticipants((prevState) => [...prevState, participantName]) // adicionar um participante após o outro
+    setParticipants((prevState) => [...prevState, participantName]); // adicionar um participante após o outro
     setParticipantName(''); // limpa o estado quando for enviado
   }
 
@@ -23,6 +23,7 @@ export function Home() {
     Alert.alert("Remover", `Deseja remover o partipante ${name}?`, [
       {
         text: "sim",
+        // o setParticipants seleciona o estado participant com filter e o remove 
         onPress: () => setParticipants(prevState => prevState.filter(Participant => Participant !== name))
       },
       {
@@ -30,7 +31,6 @@ export function Home() {
         style: "cancel",
       },
     ])
-    console.log(`Você removeu o participante ${name}`);
   }
 
   return (
